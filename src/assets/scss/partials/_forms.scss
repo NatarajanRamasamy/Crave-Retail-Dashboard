@@ -1,0 +1,25 @@
+.form-control{
+  background: $input-bg;
+  border: $input-border-width solid $input-border-color;
+  @include borderRadius(4px);
+  height: $input-height;
+  font-size: $input-font-size;
+  $input-color: #2C2C2C;
+  line-height: $input-line-height;
+  font-family: $font-1;
+  padding-left: 25px;
+  padding-right: 25px;
+
+  @include placeholder{
+    color: $placeholder-color;
+    opacity: 0.4;
+  }
+
+}
+label{
+  color: $label-color;
+  font: #{$label-font-size}/$base-line-height $font-2;
+  font-size: $label-font-size;
+  opacity: 0.5;
+  margin: 0px;
+}

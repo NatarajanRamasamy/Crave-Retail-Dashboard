@@ -1,0 +1,10 @@
+.btn{
+	font-family: $font-2;
+}
+.btn-primary{
+	background: $button-color-primary-bg;
+	font-size: $button-font-size;
+	&:hover{
+		background: $button-color-primary-hover-bg;
+	}
+}

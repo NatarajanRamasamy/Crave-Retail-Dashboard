@@ -1,0 +1,29 @@
+import React from 'react';
+import '../assets/css/vendors/bootstrap/bootstrap.css';
+import '../assets/scss/main.scss';
+import { Router, Route } from 'react-router-dom';
+import { PrivateRoute } from '../_components';
+import { history } from '../_helpers';
+import { SignIn } from './SignIn';
+import { Dashboard } from './Dashboard';
+import { UserManagment } from './UserManagment';
+
+
+class App extends React.Component {
+
+  render() {
+    return (
+      <div>
+        <Router history={history}>
+          <div>
+            <Route exact path="/" component={Dashboard} />
+            <Route path="/login" component={SignIn} />
+            <Route path="/user" component={UserManagment} />
+          </div>
+        </Router>
+      </div>
+    )
+  }
+}
+
+export default App;
