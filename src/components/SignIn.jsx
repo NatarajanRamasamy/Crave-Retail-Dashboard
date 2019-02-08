@@ -25,7 +25,7 @@ class SignIn extends Component {
       errors: {
         username: '',
         password: '',
-      },
+      }
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -95,6 +95,16 @@ class SignIn extends Component {
 
   render() {
     const { username, password } = this.state;
+    let alert = this.props.alert;
+    let errorMsg = '';
+    if (alert.message === "Unauthorized") {
+      errorMsg = "Please enter a valid UserName/Password"
+    }
+    else {
+      errorMsg = '';
+    }
+
+
     return (
       <div>
         <div className="container-fill bg-light login-page align-items-center justify-content-center">
@@ -113,6 +123,7 @@ class SignIn extends Component {
               </div>
               <div className="login-form-body d-flex flex-grow-1 align-items-center">
                 <form className="flex-grow-1" action="" onSubmit={this.handleSubmitLogin} >
+                  <div className="error-block">{errorMsg}</div>
                   <div className="form-group">
                     <label htmlFor="email">Email</label>
                     <input type="email" className={this.state.errors.username ? "form-control input-error" : "form-control"} id="email" placeholder="Enter your email Id" value={username} name="username" onChange={this.handleChange} />

@@ -7,7 +7,7 @@ import {
   REQUIRED,
   INVALID
 } from '../_constants/form.constants';
-import { userActions } from '../_actions';
+// import { userActions } from '../_actions';
 
 class ResetPassword extends Component {
   constructor(props) {
@@ -45,7 +45,7 @@ class ResetPassword extends Component {
   handleSubmitResetPassword(e) {
     e.preventDefault();
     const { username } = this.state;
-    const { dispatch } = this.props;
+    // const { dispatch } = this.props;
     this.setState({
       errors: {
         username: this.validate('username', username),
