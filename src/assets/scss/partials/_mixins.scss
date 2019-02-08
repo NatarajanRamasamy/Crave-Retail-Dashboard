@@ -63,6 +63,13 @@
   box-shadow: $shadow;
 }
 
+@mixin appearance($value){
+  -webkit-appearance: $value;
+  -moz-appearance: $value;
+  appearance: $value;
+}
+
+
 @mixin flex($shrink, $grow, $basis){
   -moz-flex-shrink: $shrink;
   -webkit-flex-shrink: $shrink;

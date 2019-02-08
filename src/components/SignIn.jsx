@@ -17,7 +17,7 @@ class SignIn extends Component {
     super(props);
 
     // reset login status
-    // this.props.dispatch(userActions.logout());
+    this.props.dispatch(userActions.logout());
 
     this.state = {
       username: '',
@@ -29,9 +29,15 @@ class SignIn extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmitLogin = this.handleSubmitLogin.bind(this);
   }
 
+  // component Did Mount 
+  componentDidMount() {
+    document.title = "Crave Retail | Login"
+  }
+
+  // onchange input fields
   handleChange(e) {
     const { name, value } = e.target;
     this.setState({
@@ -42,7 +48,8 @@ class SignIn extends Component {
     });
   }
 
-  handleSubmit(e) {
+  // submit login form
+  handleSubmitLogin(e) {
     e.preventDefault();
     const { username, password } = this.state;
     const { dispatch } = this.props;
@@ -57,6 +64,7 @@ class SignIn extends Component {
     }
   }
 
+  // validations for input fields
   validate = (name, value) => {
     switch (name) {
       case 'username':
@@ -104,23 +112,22 @@ class SignIn extends Component {
                 <h1>Login</h1>
               </div>
               <div className="login-form-body d-flex flex-grow-1 align-items-center">
-                <form className="flex-grow-1" action="" onSubmit={this.handleSubmit}>
+                <form className="flex-grow-1" action="" onSubmit={this.handleSubmitLogin}>
                   <div className="form-group">
                     <label htmlFor="email">Email</label>
-                    <input type="email" className="form-control" id="email" placeholder="Enter your email Id" value={username} name="username" onChange={this.handleChange} />
-                    <div className="help-block">{this.state.errors.username}</div>
+                    <input type="email" className={this.state.errors.username ? "form-control input-error" : "form-control"} id="email" placeholder="Enter your email Id" value={username} name="username" onChange={this.handleChange} />
+                    <div className="error-block">{this.state.errors.username}</div>
                   </div>
                   <div className="form-group">
                     <label htmlFor="pwd">Password</label>
-                    <input type="password" className="form-control" id="pwd" placeholder="Enter your password" name="password" value={password} onChange={this.handleChange} />
-                    <div className="help-block">{this.state.errors.password}</div>
+                    <input type="password" className={this.state.errors.password ? "form-control input-error" : "form-control"} id="pwd" placeholder="Enter your password" name="password" value={password} onChange={this.handleChange} />
+                    <div className="error-block">{this.state.errors.password}</div>
                   </div>
                   <div className="form-group d-flex align-items-md-center justify-content-between login-actions flex-column flex-md-row">
-                    <Link to='' className="link-primary link-underline mb-2 mb-md-0">
-                      Forget your Password ?
+                    <Link to='/password-reset' className="link-primary link-underline mb-2 mb-md-0">
+                      Forgot your Password ?
                     </Link>
-                    <button type="submit" className="btn btn-primary login-btn">Login</button>
-                    {/* {(this.state.errors.username || this.state.errors.password) ? <button type="submit" disabled className="btn btn-primary login-btn">Login</button> : <button type="submit" className="btn btn-primary login-btn">Login</button>} */}
+                    {(this.state.errors.username || this.state.errors.password) ? <button type="button" className="btn btn-primary login-btn">Login</button> : <button type="submit" className="btn btn-primary login-btn">Login</button>}
                   </div>
                 </form>
               </div>

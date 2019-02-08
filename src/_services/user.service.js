@@ -10,17 +10,14 @@ function login(username, password) {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ log_user: username, password: password })
+        body: JSON.stringify({ email: username, pin: password })
     };
 
-    return fetch(`api/login/`, requestOptions)
+    return fetch(`login/`, requestOptions)
         .then(handleResponse)
         .then(user => {
-            // login successful if there's a jwt token in the response
-            if (user.loggedIn) {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('user', JSON.stringify(user));
-            }
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('user', JSON.stringify(user.data));
 
             return user;
         });

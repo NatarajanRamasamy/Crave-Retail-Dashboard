@@ -7,7 +7,7 @@
 .login-container{
 	width: 100%;
 	max-width: 760px;
-  	min-height: 450px;
+  	min-height: 400px;
   	background: #fff;
 
   	@include boxShadow(0 3px 7px 0 rgba(0, 0, 0, 0.05));
@@ -20,8 +20,9 @@
 .login-brand-con{
 	@include flex(0, 0, 140px);
 	background: $primary-color;
-	@include borderRadius(4px 0px 0px 4px);
+	@include borderRadius(4px 4px 0px 0px);
 	@media (min-width: 768px){
+		@include borderRadius(4px 0px 0px 4px);
 		@include flex(0, 0, 230px);
 	}
 }

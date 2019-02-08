@@ -6,5 +6,11 @@
 	font-size: $button-font-size;
 	&:hover{
 		background: $button-color-primary-hover-bg;
+		border-color: $button-color-primary-bg;
+	}
+	&:disabled{
+		background: $button-color-primary-bg;
+		opacity: 0.75;
+		pointer-events: none;
 	}
 }

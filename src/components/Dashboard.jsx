@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Header from './Header'
+import Header from './Header';
+import { connect } from 'react-redux';
 
-export class Dashboard extends Component {
+class Dashboard extends Component {
   render() {
     return (
       <div>
@@ -12,4 +13,13 @@ export class Dashboard extends Component {
   }
 }
 
-export default Dashboard
+function mapStateToProps(state) {
+  const { authentication } = state;
+  const { user } = authentication;
+  return {
+    user
+  }
+}
+
+const connectedViewPage = connect(mapStateToProps)(Dashboard);
+export { connectedViewPage as Dashboard }; 

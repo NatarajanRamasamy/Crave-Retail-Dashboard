@@ -7,7 +7,8 @@ import { history } from '../_helpers';
 import { SignIn } from './SignIn';
 import { Dashboard } from './Dashboard';
 import { UserManagment } from './UserManagment';
-
+import { ResetPassword } from './ResetPassword';
+import { ResetPage } from './ResetPage';
 
 class App extends React.Component {
 
@@ -16,9 +17,11 @@ class App extends React.Component {
       <div>
         <Router history={history}>
           <div>
-            <Route exact path="/" component={Dashboard} />
+            <PrivateRoute exact path="/" component={Dashboard} />
             <Route path="/login" component={SignIn} />
             <Route path="/user" component={UserManagment} />
+            <Route path="/password-reset" component={ResetPassword} />
+            <Route path="/password-reset-sent" component={ResetPage} />
           </div>
         </Router>
       </div>
