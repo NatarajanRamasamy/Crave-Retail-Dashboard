@@ -26,7 +26,6 @@ export class Header extends Component {
       <nav className="navbar fixed-top navbar-primary">
         <div className="d-flex flex-grow-1">
           <a className="ml-auto header-btn header-right-btn" href="/login">
-            <img src="img/logout-icon.svg" alt="" />
             Logout
 			      </a>
         </div>

@@ -95,22 +95,23 @@ class ResetPassword extends Component {
                 <h1>Reset Password</h1>
               </div>
               <div className="login-form-body d-flex flex-grow-1 align-items-center">
-                {(this.state.showForm ? <form className="flex-grow-1" action="" onSubmit={this.handleSubmitResetPassword}>
-                  <div className="form-group">
-                    <label className="mb-3">Enter your email address and we will send you a link
+                {(this.state.showForm ?
+                  <form className="flex-grow-1" action="" onSubmit={this.handleSubmitResetPassword}>
+                    <div className="form-group">
+                      <label className="mb-3">Enter your email address and we will send you a link
                       to a page where you can reset your password.</label>
-                    <input type="email" className={this.state.errors.username ? "form-control input-error" : "form-control"} id="email" placeholder="Enter your email" value={username} name="username" onChange={this.handleChange} />
-                    <div className="error-block">{this.state.errors.username}</div>
-                  </div>
-                  <div className="form-group d-flex align-items-md-center justify-content-center login-actions flex-column flex-md-row">
-                    {(this.state.errors.username) ? <button type="button" className="btn btn-primary login-btn " >Send E-Mail</button> : <button type="submit" className="btn btn-primary login-btn " >Send E-Mail</button>}
-                  </div>
-                  <div className="form-group d-flex align-items-md-center justify-content-center login-actions flex-column flex-md-row">
-                    <Link to='/login' className="link-primary link-underline mb-2 mb-md-0">
-                      Back to Login
+                      <input type="email" className={this.state.errors.username ? "form-control input-error" : "form-control"} id="email" placeholder="Enter your email" value={username} name="username" onChange={this.handleChange} />
+                      <div className="error-block">{this.state.errors.username}</div>
+                    </div>
+                    <div className="form-group d-flex align-items-md-center justify-content-center login-actions flex-column flex-md-row">
+                      {(this.state.errors.username) ? <button type="button" className="btn btn-primary login-btn " >Send E-Mail</button> : <button type="submit" className="btn btn-primary login-btn " >Send E-Mail</button>}
+                    </div>
+                    <div className="form-group d-flex align-items-md-center justify-content-center login-actions flex-column flex-md-row">
+                      <Link to='/login' className="link-primary link-underline mb-2 mb-md-0">
+                        Back to Login
                     </Link>
-                  </div>
-                </form> :
+                    </div>
+                  </form> :
                   <form className="flex-grow-1 text-center" action="">
                     <div className="form-group">
                       <label className="mb-3">Check your email for a temporary password.</label>
