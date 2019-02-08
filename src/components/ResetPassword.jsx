@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { isEmail, isEmpty } from 'validator';
 import {
@@ -8,21 +9,23 @@ import {
 } from '../_constants/form.constants';
 import { userActions } from '../_actions';
 
-export class ResetPassword extends Component {
+class ResetPassword extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       username: '',
+      showForm: true,
       errors: {
         username: '',
       },
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSubmitResetPassword = this.handleSubmitResetPassword.bind(this);
   }
+
+  // component Did Mount 
   componentDidMount() {
     document.title = "Crave Retail | ResetPassword"
   }
@@ -39,21 +42,20 @@ export class ResetPassword extends Component {
   }
 
   // submit reset password email
-  handleSubmit(e) {
+  handleSubmitResetPassword(e) {
     e.preventDefault();
-    const { username, password } = this.state;
+    const { username } = this.state;
     const { dispatch } = this.props;
     this.setState({
       errors: {
         username: this.validate('username', username),
       },
     });
-    if (username && password) {
-      dispatch(userActions.login(username, password));
-      // if (this.state.errors.username) {
-      //   let path = `password-reset-sent`;
-      //   this.props.history.push(path);
-      // }
+    if (username) {
+      // dispatch(userActions.resetPassword(username));
+      this.setState({
+        showForm: false
+      })
     }
   }
 
@@ -74,12 +76,8 @@ export class ResetPassword extends Component {
     }
   }
 
-  handleSubmitResetPassword() {
-
-  }
   render() {
     const { username } = this.state;
-    let errorMessage = this.state.errors.username
     return (
       <div>
         <div className="container-fill bg-light login-page align-items-center justify-content-center">
@@ -97,7 +95,7 @@ export class ResetPassword extends Component {
                 <h1>Reset Password</h1>
               </div>
               <div className="login-form-body d-flex flex-grow-1 align-items-center">
-                <form className="flex-grow-1" action="" onSubmit={this.handleSubmit}>
+                {(this.state.showForm ? <form className="flex-grow-1" action="" onSubmit={this.handleSubmitResetPassword}>
                   <div className="form-group">
                     <label className="mb-3">Enter your email address and we will send you a link
                       to a page where you can reset your password.</label>
@@ -105,14 +103,22 @@ export class ResetPassword extends Component {
                     <div className="error-block">{this.state.errors.username}</div>
                   </div>
                   <div className="form-group d-flex align-items-md-center justify-content-center login-actions flex-column flex-md-row">
-                    {(!this.state.errors.username && this.state.username) ? <Link to="password-reset-sent" className="btn btn-primary login-btn" onClick={this.handleSubmitResetPassword}>Send E-Mail</Link> : <button type="submit" className="btn btn-primary login-btn s" >Send E-Mail</button>}
+                    {(this.state.errors.username) ? <button type="button" className="btn btn-primary login-btn " >Send E-Mail</button> : <button type="submit" className="btn btn-primary login-btn " >Send E-Mail</button>}
                   </div>
                   <div className="form-group d-flex align-items-md-center justify-content-center login-actions flex-column flex-md-row">
                     <Link to='/login' className="link-primary link-underline mb-2 mb-md-0">
                       Back to Login
                     </Link>
                   </div>
-                </form>
+                </form> :
+                  <form className="flex-grow-1 text-center" action="">
+                    <div className="form-group">
+                      <label className="mb-3">Check your email for a temporary password.</label>
+                    </div>
+                    <div className="form-group d-flex align-items-md-center justify-content-center login-actions flex-column flex-md-row">
+                      <Link to='/login' className="btn btn-primary login-btn">Back to Login Screen</Link>
+                    </div>
+                  </form>)}
               </div>
             </div>
           </div>
@@ -125,4 +131,18 @@ export class ResetPassword extends Component {
   }
 }
 
-export default ResetPassword
+ResetPassword.displayName = 'ResetPassword';
+
+ResetPassword.propTypes = {
+  userActions: PropTypes.func,
+};
+
+function mapStateToProps(state) {
+  const { alert } = state;
+  return {
+    alert
+  };
+}
+
+const connectedLoginPage = connect(mapStateToProps)(ResetPassword);
+export { connectedLoginPage as ResetPassword }; 

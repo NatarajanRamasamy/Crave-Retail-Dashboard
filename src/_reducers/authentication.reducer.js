@@ -17,6 +17,18 @@ export function authentication(state = initialState, action) {
       };
     case userConstants.LOGIN_FAILURE:
       return {};
+
+    case userConstants.RESET_PASSWORD_REQUEST:
+      return {
+        user: action.user
+      };
+    case userConstants.RESET_PASSWORD_SUCCESS:
+      return {
+        user: action.user
+      };
+    case userConstants.RESET_PASSWORD_FAILURE:
+      return {};
+
     case userConstants.LOGOUT:
       return {};
     default:

@@ -112,7 +112,7 @@ class SignIn extends Component {
                 <h1>Login</h1>
               </div>
               <div className="login-form-body d-flex flex-grow-1 align-items-center">
-                <form className="flex-grow-1" action="" onSubmit={this.handleSubmitLogin}>
+                <form className="flex-grow-1" action="" onSubmit={this.handleSubmitLogin} >
                   <div className="form-group">
                     <label htmlFor="email">Email</label>
                     <input type="email" className={this.state.errors.username ? "form-control input-error" : "form-control"} id="email" placeholder="Enter your email Id" value={username} name="username" onChange={this.handleChange} />
@@ -120,7 +120,7 @@ class SignIn extends Component {
                   </div>
                   <div className="form-group">
                     <label htmlFor="pwd">Password</label>
-                    <input type="password" className={this.state.errors.password ? "form-control input-error" : "form-control"} id="pwd" placeholder="Enter your password" name="password" value={password} onChange={this.handleChange} />
+                    <input type="password" className={this.state.errors.password ? "form-control input-error" : "form-control"} id="pwd" placeholder="Enter your password" name="password" value={password} onChange={this.handleChange} autoComplete="off" />
                     <div className="error-block">{this.state.errors.password}</div>
                   </div>
                   <div className="form-group d-flex align-items-md-center justify-content-between login-actions flex-column flex-md-row">

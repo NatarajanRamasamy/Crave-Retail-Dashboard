@@ -1,6 +1,7 @@
 export const userService = {
     login,
     logout,
+    resetPassword
 };
 
 function login(username, password) {
@@ -19,6 +20,23 @@ function login(username, password) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('user', JSON.stringify(user.data));
 
+            return user;
+        });
+}
+
+function resetPassword(username) {
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: username })
+    };
+
+    return fetch(`password/`, requestOptions)
+        .then(handleResponse)
+        .then(user => {
             return user;
         });
 }
