@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { isEmail, isEmpty, isLength } from 'validator';
+import { BeatLoader } from 'react-spinners';
 import {
   REQUIRED,
   INVALID,
@@ -25,7 +26,8 @@ class SignIn extends Component {
       errors: {
         username: '',
         password: '',
-      }
+      },
+      loading: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -58,6 +60,7 @@ class SignIn extends Component {
         username: this.validate('username', username),
         password: this.validate('password', password),
       },
+      loading: true
     });
     if (username && password) {
       dispatch(userActions.login(username, password));
@@ -104,7 +107,6 @@ class SignIn extends Component {
       errorMsg = '';
     }
 
-
     return (
       <div>
         <div className="container-fill bg-light login-page align-items-center justify-content-center">
@@ -138,7 +140,17 @@ class SignIn extends Component {
                     <Link to='/password-reset' className="link-primary link-underline mb-2 mb-md-0">
                       Forgot your Password ?
                     </Link>
-                    {(this.state.errors.username || this.state.errors.password) ? <button type="button" className="btn btn-primary login-btn">Login</button> : <button type="submit" className="btn btn-primary login-btn">Login</button>}
+                    {(this.state.errors.username || this.state.errors.password) ? <button type="button" className="btn btn-primary login-btn">Login</button> :
+                      (this.state.loading && this.props.authentication.loader) ? <button className="btn btn-primary login-btn" type="button">
+                        {/* loader */}
+                        <BeatLoader
+                          sizeUnit={"px"}
+                          size={11}
+                          color={'#7f869c'}
+                          loading={true}
+                        />
+                      </button> :
+                        <button type="submit" className="btn btn-primary login-btn">Login</button>}
                   </div>
                 </form>
               </div>
@@ -160,9 +172,10 @@ SignIn.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { alert } = state;
+  const { alert, authentication } = state;
   return {
-    alert
+    alert,
+    authentication
   };
 }
 
