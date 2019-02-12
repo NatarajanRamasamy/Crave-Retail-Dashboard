@@ -6,12 +6,18 @@
 }
 .login-container{
 	width: 100%;
-	max-width: 760px;
-  	min-height: 400px;
+	max-width: 660px;
+    min-height: 397px;
   	background: #fff;
 
   	@include boxShadow(0 3px 7px 0 rgba(0, 0, 0, 0.05));
   	@include borderRadius(4px 4px 4px 4px);
+
+  	@media (min-width: 1366px){
+  		max-width: 760px;
+  		min-height: 400px;
+  	}
+
 }
 
 .login-brand-con, .login-form-con{
@@ -23,6 +29,9 @@
 	@include borderRadius(4px 4px 0px 0px);
 	@media (min-width: 768px){
 		@include borderRadius(4px 0px 0px 4px);
+		@include flex(0, 0, 200px);
+	}
+	@media (min-width: 1366px){
 		@include flex(0, 0, 230px);
 	}
 }
@@ -55,6 +64,9 @@
 .login-btn{
 	padding: 12px 40px;
 	@media (min-width: 768px){
+		padding: 12px 50px;
+	}
+	@media (min-width: 1366px){
 		padding: 12px 60px;
 	}
 }
@@ -78,4 +90,14 @@
 	font-family: $font-5;
 	color: $font-color-light;
 	font-size: 12px;
+}
+.login-error-list{
+	padding: 10px 15px;
+	border: 1px solid $error-color;
+	border-left-width: 4px;
+	color: $error-color;
+	font-family: $font-5;
+	font-size: 16px;
+	border-radius: 3px;
+	margin-bottom: 15px;
 }

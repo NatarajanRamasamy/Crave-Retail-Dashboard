@@ -125,7 +125,9 @@ class SignIn extends Component {
               </div>
               <div className="login-form-body d-flex flex-grow-1 align-items-center">
                 <form className="flex-grow-1" action="" onSubmit={this.handleSubmitLogin} >
-                  <div className="error-block">{errorMsg}</div>
+                  {errorMsg && <div className="login-error-list">
+                    {errorMsg}
+                  </div>}
                   <div className="form-group">
                     <label htmlFor="email">Email</label>
                     <input type="email" className={this.state.errors.username ? "form-control input-error" : "form-control"} id="email" placeholder="Enter your email Id" value={username} name="username" onChange={this.handleChange} />

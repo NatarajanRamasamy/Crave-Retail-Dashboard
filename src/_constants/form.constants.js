@@ -42,7 +42,7 @@ export const UNMATCHED_PASSWORDS = resource => 'The passwords you have entered d
 export const LENGTH_REQUIRED = (resource, options) => {
   const { min, max } = options;
   if (min && max) {
-    return `${resource} must have ${min} numbers.`;
+    return `${resource} must have ${min} digits.`;
   } if (min) {
     return `${resource} must have more than ${min} characters.`;
   }
